@@ -1,0 +1,17 @@
+# Build directories[cite: 1]
+build/
+bin/
+out/
+*.exe
+*.o
+*.a
+*.so
+
+# IDE settings[cite: 1]
+.vscode/
+.idea/
+*.user
+
+# System / OS files
+.DS_Store
+Thumbs.db
