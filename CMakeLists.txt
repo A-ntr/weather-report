@@ -9,7 +9,10 @@ include_directories(include)
 file(GLOB SOURCES "src/*.cpp")
 
 # Core Executable
-add_executable(Weather_Report ${SOURCES} src/main.cpp)
+add_executable(Weather_Report ${SOURCES} 
+  src/main.cpp 
+  src/WeatherParser.cpp
+)
 
 # Include Catch2 via FetchContent for testing
 include(FetchContent)
