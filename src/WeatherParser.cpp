@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath) {
+vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath, size_t maxRecords) {
   vector<WeatherRecord> records;
   ifstream file(filePath);
 
@@ -13,8 +13,8 @@ vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath) {
     return records;
   }
 
-  // Reserve space to minimize memory re-allocations for large datasets (>100,000 rows)
-  records.reserve(150000);
+  // Reserve space for the requested maxRecords (or cap it to save RAM)
+  records.reserve(maxRecords > 0 ? maxRecords : 100000);
 
   string line;
 
@@ -26,6 +26,9 @@ vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath) {
 
   while (getline(file, line)) {
     if(line.empty()) continue;
+    // Check if we reached our target record limit
+    if (maxRecords > 0 && records.size() >= maxRecords) break;
+    
     stringstream ss(line);
     WeatherRecord record;
     string token; // string value placeholder for numerical data type (i.e. double precipitation)

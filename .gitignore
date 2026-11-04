@@ -19,3 +19,4 @@ Thumbs.db
 # Ignore dataset files
 data/*.csv
 *.csv
+/.kiro
