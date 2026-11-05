@@ -63,12 +63,12 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 ## Technical Strategy
 
 1. **In-Place Heap Sort**: Formulates a Max-Heap structure over the array using bottom-up `heapifyDown` in O(N) time, followed by O(N log N) extraction to compute top-k orderings.
-2. **In-Place Quick Sort**: Partitioning-based algorithm designed for fast average-case sorting performance ($O(N \log N)$).
+2. **In-Place Quick Sort**: Partitioning-based algorithm designed for fast average-case sorting performance O(N log N).
 3. **High-Resolution Benchmarking**: Wraps algorithm execution inside `std::chrono::steady_clock` invocations to measure sub-millisecond query latency.
 
 ---
 
-## 💻 Visuals & Usage Example
+## Visuals & Usage Example
 
 ### CLI Execution Workflow
 
@@ -101,7 +101,7 @@ Rank   EventID     Type   Severity   State   Precipitation
 
 ---
 
-## 🚀 Building & Running
+## Building & Running
 
 ### Build Project with CMake
 ```bash
@@ -127,6 +127,6 @@ ctest --output-on-failure
 
 ---
 
-## 📚 References
+## References
 
 * Moosavi, Sobhan, et al. *"US Weather Events (2016–2022)."* Kaggle Datasets, 2022.
