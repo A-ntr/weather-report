@@ -1,13 +1,13 @@
 # Weather Report: Top-k Weather Anomaly Query Engine
 
-A high-performance C++ command-line application built to ingest, filter, and extract top-k extreme weather event anomalies from large-scale meteorological datasets (>100,000 records). Designed to compare the execution speed of custom algorithm implementations.
+A C++ command-line application that ingests, filters, and extracts top-k extreme weather anomalies from datasets with over 100,000 records. Built to compare the execution speed of custom sorting algorithms.
 
 ---
 
 ## Team Members
 
 * **An Tran** — Heap Sort, Benchmarking, Testing
-* **Azan Zaman** — User Interface (CLI Front-End), Testing
+* **Azan Zaman** — CLI Front-End, Testing
 * **Shuncheng Liang** — Quick Sort, Testing
 
 ---
@@ -15,19 +15,19 @@ A high-performance C++ command-line application built to ingest, filter, and ext
 ## Problem & Motivation
 
 ### Problem Statement
-Analyzing localized extreme weather events across massive historical datasets requires fast, ranked retrieval of weather observations based on severity metrics under customizable filtering conditions.
+Analyzing localized extreme weather events across large historical datasets requires quick, ranked retrieval of weather observations based on severity under custom filters.
 
 ### Motivation
-Extreme weather events significantly affect agriculture, flight logistics, emergency dispatch services, and public safety. Because historical weather datasets comprise millions of observations, naive linear scans or full array sorting are computationally expensive. By implementing and benchmarking custom **Heap Sort** and **Quick Sort** algorithms from scratch, this engine demonstrates optimal selection mechanisms to power real-time analytical dashboards.
+Extreme weather events affect agriculture, flight logistics, emergency dispatch services, and public safety. Because historical weather datasets contain millions of observations, linear scans or full array sorts are computationally expensive. By building and benchmarking custom **Heap Sort** and **Quick Sort** algorithms from scratch, this engine evaluates selection mechanisms to power real-time analytical dashboards.
 
 ---
 
 ## Key Features
 
-* **High-Volume Data Ingestion**: Parses and loads over 100,000 records smoothly into memory.
-* **Customizable Filtering**: Filter records dynamically by state, metric type (rain, snow, fog), severity level, and geographical region.
-* **Algorithm Comparison**: Select between custom **Heap Sort** and custom **Quick Sort** implementations.
-* **Latency Benchmarking**: Measures exact execution time using high-precision CPU timers (`std::chrono::steady_clock`).
+* **Data Ingestion**: Parses and loads over 100,000 records into memory.
+* **Filtering**: Filter records by state, metric type (rain, snow, fog), severity level, and region.
+* **Algorithm Comparison**: Select between custom Heap Sort and Quick Sort implementations.
+* **Latency Benchmarking**: Measures execution time using `std::chrono::steady_clock`.
 * **Tabular Results**: Displays ranked top-$k$ outputs alongside precise benchmark metrics.
 
 ---
@@ -62,9 +62,9 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 
 ## Technical Strategy
 
-1. **In-Place Heap Sort**: Formulates a Max-Heap structure over the array using bottom-up `heapifyDown` in O(N) time, followed by O(N log N) extraction to compute top-k orderings.
-2. **In-Place Quick Sort**: Partitioning-based algorithm designed for fast average-case sorting performance O(N log N).
-3. **High-Resolution Benchmarking**: Wraps algorithm execution inside `std::chrono::steady_clock` invocations to measure sub-millisecond query latency.
+1. **In-Place Heap Sort**: Builds a Max-Heap over the vector using bottom-up `heapifyDown` in $O(N)$ time, followed by $O(N \log N)$ extraction to compute top-$k$ orderings.
+2. **In-Place Quick Sort**: Partitioning-based sorting algorithm operating in $O(N \log N)$ average-case time.
+3. **Benchmarking**: Measures execution time with `std::chrono::steady_clock` to record query latency.
 
 ---
 
