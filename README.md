@@ -1,10 +1,10 @@
 # Weather Report: Top-$k$ Weather Anomaly Query Engine
 
-A high-performance C++ command-line application built to ingest, filter, and extract top-$k$ extreme weather event anomalies from large-scale meteorological datasets (>100,000 records). Designed to compare the execution speed of custom algorithm implementations.
+A high-performance C++ command-line application built to ingest, filter, and extract top-k extreme weather event anomalies from large-scale meteorological datasets (>100,000 records). Designed to compare the execution speed of custom algorithm implementations.
 
 ---
 
-## 👥 Team Members
+## Team Members
 
 * **An Tran** — Heap Sort, Benchmarking, Testing
 * **Azan Zaman** — User Interface (CLI Front-End), Testing
@@ -12,7 +12,7 @@ A high-performance C++ command-line application built to ingest, filter, and ext
 
 ---
 
-## 📌 Problem & Motivation
+## Problem & Motivation
 
 ### Problem Statement
 Analyzing localized extreme weather events across massive historical datasets requires fast, ranked retrieval of weather observations based on severity metrics under customizable filtering conditions.
@@ -22,7 +22,7 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 * **High-Volume Data Ingestion**: Parses and loads over 100,000 records smoothly into memory.
 * **Customizable Filtering**: Filter records dynamically by state, metric type (rain, snow, fog), severity level, and geographical region.
@@ -32,7 +32,7 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 
 ---
 
-## 📊 Dataset & Schema
+## Dataset & Schema
 
 * **Dataset**: [US Weather Events (2016–2022)](https://www.kaggle.com/datasets/sobhanmoosavi/us-weather-events) by Sobhan Moosavi.
 * **Data Structure**: `std::vector<WeatherRecord>` storing normalized weather attributes.
@@ -51,7 +51,7 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 
 ---
 
-## 🛠️ Tech Stack & Tools
+## Tech Stack & Tools
 
 * **Language**: C++17
 * **Build System**: CMake & Ninja
@@ -60,9 +60,9 @@ Extreme weather events significantly affect agriculture, flight logistics, emerg
 
 ---
 
-## 🏗️ Technical Strategy
+## Technical Strategy
 
-1. **In-Place Heap Sort**: Formulates a Max-Heap structure over the array using bottom-up `heapifyDown` in $O(N)$ time, followed by $O(N \log N)$ extraction to compute top-$k$ orderings.
+1. **In-Place Heap Sort**: Formulates a Max-Heap structure over the array using bottom-up `heapifyDown` in O(N) time, followed by O(N log N) extraction to compute top-k orderings.
 2. **In-Place Quick Sort**: Partitioning-based algorithm designed for fast average-case sorting performance ($O(N \log N)$).
 3. **High-Resolution Benchmarking**: Wraps algorithm execution inside `std::chrono::steady_clock` invocations to measure sub-millisecond query latency.
 
