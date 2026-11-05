@@ -1,4 +1,4 @@
-# Weather Report: Top-$k$ Weather Anomaly Query Engine
+# Weather Report: Top-k Weather Anomaly Query Engine
 
 A high-performance C++ command-line application built to ingest, filter, and extract top-k extreme weather event anomalies from large-scale meteorological datasets (>100,000 records). Designed to compare the execution speed of custom algorithm implementations.
 
