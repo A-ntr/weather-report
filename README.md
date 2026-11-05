@@ -28,7 +28,7 @@ Extreme weather events affect agriculture, flight logistics, emergency dispatch 
 * **Filtering**: Filter records by state, metric type (rain, snow, fog), severity level, and region.
 * **Algorithm Comparison**: Select between custom Heap Sort and Quick Sort implementations.
 * **Latency Benchmarking**: Measures execution time using `std::chrono::steady_clock`.
-* **Tabular Results**: Displays ranked top-$k$ outputs alongside precise benchmark metrics.
+* **Tabular Results**: Displays ranked top-k outputs alongside precise benchmark metrics.
 
 ---
 
