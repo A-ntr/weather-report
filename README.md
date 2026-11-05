@@ -62,7 +62,7 @@ Extreme weather events affect agriculture, flight logistics, emergency dispatch 
 
 ## Technical Strategy
 
-1. **In-Place Heap Sort**: Builds a Max-Heap over the vector using bottom-up `heapifyDown` in $O(N)$ time, followed by $O(N \log N)$ extraction to compute top-$k$ orderings.
+1. **In-Place Heap Sort**: Builds a Max-Heap over the vector using bottom-up `heapifyDown` in $O(N)$ time, followed by $O(N \log N)$ extraction to compute top-k orderings.
 2. **In-Place Quick Sort**: Partitioning-based sorting algorithm operating in $O(N \log N)$ average-case time.
 3. **Benchmarking**: Measures execution time with `std::chrono::steady_clock` to record query latency.
 
