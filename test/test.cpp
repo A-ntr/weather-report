@@ -5,7 +5,9 @@
 #include "WeatherParser.h"
 #include <iostream>
 #include <sstream>
-
+/*
+Heap testing
+*/
 // Test Case 1
 TEST_CASE("ascending (max) heapifyDown on vector of integers", "[heapifyDown][int]") {
   vector<int> arr = {1, 3, 2, 4, 0};
@@ -42,6 +44,9 @@ TEST_CASE("descending (min) heapSort on vector of integers", "[heapSort][int]") 
   REQUIRE(arr == expected);
 }
 
+/*
+WeatherParser testing
+*/
 // Test Case 5: parseCSV correct path
 TEST_CASE("WeatherParser::parseCSV on dataset in data correct path", "[parseCSV][WeatherParser]") {
   stringstream buffer;
@@ -53,6 +58,7 @@ TEST_CASE("WeatherParser::parseCSV on dataset in data correct path", "[parseCSV]
 
   REQUIRE(buffer.str() == "Successfully parsed 100000 records.\n");
 }
+
 // Test Case 6: parseCSV wrong path
 TEST_CASE("WeatherParser::parseCSV on dataset in data wrong path", "[parseCSV][WeatherParser]") {
   stringstream buffer;
@@ -65,6 +71,9 @@ TEST_CASE("WeatherParser::parseCSV on dataset in data wrong path", "[parseCSV][W
   REQUIRE(buffer.str() == expected);
 }
 
+/*
+heapSort testing
+*/
 // Test Case 7
 TEST_CASE("ascending (max) heapSort on vector of WeatherRecord precipitation", "[heapSort][WeatherRecord]") {
   std::string datasetPath = "./data/WeatherEvents_Jan2016-Dec2022.csv";

@@ -7,7 +7,7 @@
 #include <functional>
 #include <stdexcept>
 
-// In-place heapify helper func (0 index) default max-heap (less<T>)
+// In-place heapify helper func (0 index) default max-heap/ascending (less<T>)
 template <typename T, typename Compare = std::less<T>>
 void heapifyDown(std::vector<T>& arr, size_t n, size_t i, Compare comp = Compare()) {
   size_t parent = i;
