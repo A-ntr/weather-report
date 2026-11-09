@@ -22,17 +22,23 @@ int partition(std::vector<T>& arr, int start, int end, Compare comp = Compare())
     return p;
 }
 
-template <typename T, typename Compare = std::less<T>>
-void quickSort(std::vector<T>& arr, int start = 0, int end = arr.size() - 1, Compare comp = Compare()) {
-
-    if (arr.empty()) return;
-    
+// Recursive quick sort
+template <typename T, typename Compare>
+void quickSort(std::vector<T>& arr, int start, int end, Compare comp) {
     if (start < end) {
         int p = partition(arr, start, end, comp);
 
-        quickSort(arr, start, p-1, comp);
-        quickSort(arr, p+1, end, comp);
+        quickSort(arr, start, p - 1, comp);
+        quickSort(arr, p + 1, end, comp);
     }
+}
+
+// Public function
+template <typename T, typename Compare = std::less<T>>
+void quickSort(std::vector<T>& arr, Compare comp = Compare()) {
+    if (arr.empty()) return;
+
+    quickSort(arr, 0, static_cast<int>(arr.size()) - 1, comp);
 }
 
 #endif // QUICK_H

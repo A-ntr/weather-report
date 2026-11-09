@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include "Heap.h"
+#include "Quick.h"
 #include "WeatherRecord.h"
 #include "WeatherComparators.h"
 #include "WeatherParser.h"
@@ -129,7 +130,6 @@ TEST_CASE("ascending (max) heapSort on vector of WeatherRecord precipitation", "
   }
   
 }
-
 
 /*
 quickSort testing
