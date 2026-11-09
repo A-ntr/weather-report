@@ -44,6 +44,9 @@ TEST_CASE("descending (min) heapSort on vector of integers", "[heapSort][int]") 
   REQUIRE(arr == expected);
 }
 
+/*
+Quick testing
+*/
 // Test Case 5
 TEST_CASE("ascending (max) partition on vector of integers", "[partition][int]") {
   vector<int> arr = {1, 3, 2, 4, 0};
@@ -127,6 +130,10 @@ TEST_CASE("ascending (max) heapSort on vector of WeatherRecord precipitation", "
   
 }
 
+
+/*
+quickSort testing
+*/
 // Test Case 12
 TEST_CASE("ascending (max) quickSort on vector of WeatherRecord precipitation", "[quickSort][WeatherRecord]") {
   std::string datasetPath = "./data/WeatherEvents_Jan2016-Dec2022.csv";
