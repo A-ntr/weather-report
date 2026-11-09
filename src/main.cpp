@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
+#include <chrono>
+
 #include <unordered_set>
 #include "WeatherParser.h"
 #include "WeatherRecord.h"
 #include "WeatherComparators.h"
 #include "Heap.h"
+#include "Quick.h"
 
 int safeStoi(const string& s) {
     try { return s.empty() ? 0 : stoi(s);} catch (...) {return 0;}
@@ -25,7 +28,7 @@ bool verifyState(const string& str) {
     return stateSet.find(str) != stateSet.end();
 }
 
-bool verifyCondition(const string& str) {
+bool verifyType(const string& str) {
     unordered_set<std::string> conditionSet{"Cold", "Fog",
         "Hail", "Rain", "Snow", "Storm", "Precipitation"};
 
@@ -58,19 +61,20 @@ int main() {
         return 1;
     }
 
-    std::cout << "2. Filter by Severity: ";
-    std::string severity;
-    std::cin >> severity;
-    if (!verifyCondition(severity)) {
-        std::cout << "Invalid severity, please try again" << std::endl;
+
+    std::cout << "2. Filter by Type: ";
+    std::string type;
+    std::cin >> type;
+    if (!verifyType(type)) {
+        std::cout << "Invalid type, please try again" << std::endl;
         return 1;
     }
 
-    std::cout << "3. Filter by Type: ";
-    std::string type;
-    std::cin >> type;
-    if (!verifyCondition(type)) {
-        std::cout << "Invalid type, please try again" << std::endl;
+    std::cout << "3. Filter by Severity: ";
+    std::string severity;
+    std::cin >> severity;
+    if (!verifySeverity(severity)) {
+        std::cout << "Invalid severity, please try again" << std::endl;
         return 1;
     }
 
@@ -88,11 +92,6 @@ int main() {
     std::string choice;
     std::cin >> choice;
 
-    std::cout << state << std::endl;
-    std::cout << severity << std::endl;
-    std::cout << type << std::endl;
-    std::cout << topKStr << std::endl;
-    std::cout << choice << std::endl;
 
     std::string datasetPath = "../data/WeatherEvents_Jan2016-Dec2022.csv";
 
@@ -100,19 +99,29 @@ int main() {
     std::vector<std::string> filterVec{state, type, severity};
 
     std::cout << "Loading dataset..." << std::endl;
-    std::vector<WeatherRecord> dataset = WeatherParser::parseCSV(datasetPath, 100000);
+    std::vector<WeatherRecord> dataset = WeatherParser::parseCSV(datasetPath, 100000, filterVec);
 
-    std::cout << "-- Results --\n"
-            "Rank\tEventID\tType\tSeverity State\tPrecipitation\n"
-            "----------------------------------------------------------" << std::endl;
+    auto start = std::chrono::steady_clock::now();
 
     if (choice == "1") {
-        // import Shuncheng's quicksort
+        quickSort(dataset, ComparePrecipitationDesc());
     }
     else if (choice == "2") {
         heapSort(dataset, ComparePrecipitationDesc());
     }
 
+    auto end = std::chrono::steady_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+
+    std::cout << "Sorting elements took: "
+              << duration.count() << " microseconds ("
+              << duration.count() / 1000.0 << " milliseconds)\n\n" << std::endl;
+
+    std::cout << "-- Results --\n"
+            "Rank\tEventID\tType\tSeverity State\tPrecipitation\n"
+            "----------------------------------------------------------" << std::endl;
+    // display topK, cap if it goes over the dataset size
     if (topK > dataset.size()) {
         topK = dataset.size();
     }

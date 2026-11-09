@@ -9,7 +9,7 @@
 class WeatherParser {
 public:
     // Reads CSV file and returns a dynamic vector of parsed weather records
-    static std::vector<WeatherRecord> parseCSV(const std::string& filePath, size_t maxRecords = 100000);
+    static std::vector<WeatherRecord> parseCSV(const std::string& filePath, size_t maxRecords = 100000, const std::vector<std::string>& filterVec = {});
 };
 
 #endif // WEATHER_PARSER_H
