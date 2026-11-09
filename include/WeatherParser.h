@@ -1,6 +1,7 @@
 #ifndef WEATHER_PARSER_H
 #define WEATHER_PARSER_H
 
+#pragma once
 #include "WeatherRecord.h"
 #include <vector>
 #include <string>

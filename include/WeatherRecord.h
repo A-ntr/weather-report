@@ -1,7 +1,10 @@
 #ifndef WEATHER_RECORD_H
 #define WEATHER_RECORD_H
+#pragma once
 
 #include <string>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 // EventId,Type,Severity,StartTime(UTC),EndTime(UTC),Precipitation(in),TimeZone,AirportCode,LocationLat,LocationLng,City,County,State,ZipCode
 struct WeatherRecord {
@@ -23,6 +26,15 @@ struct WeatherRecord {
   std::string county;
   std::string state;
   std::string zipCode;
+
+  std::string toString() const {
+    std::ostringstream precipStr;
+    precipStr << std::fixed << std::setprecision(2) << precipitation;
+
+    return eventId + "\t" + (type == "Precipitation" ? "Precip" : type)
+      + "\t" + severity + (severity == "Moderate" ? "" : "\t") + " " + state
+      + "\t" + precipStr.str();
+  }
 };
 
 #endif // WEATHER_RECORD_H

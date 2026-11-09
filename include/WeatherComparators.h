@@ -1,6 +1,7 @@
 #ifndef WEATHER_COMPARATORS_H
 #define WEATHER_COMPARATORS_H
 
+#pragma once
 #include "WeatherRecord.h"
 
 // Functor for Precipitation (Ascending)

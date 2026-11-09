@@ -46,7 +46,7 @@ TEST_CASE("descending (min) heapSort on vector of integers", "[heapSort][int]") 
 TEST_CASE("WeatherParser::parseCSV on dataset in data correct path", "[parseCSV][WeatherParser]") {
   stringstream buffer;
   streambuf* prev = cout.rdbuf(buffer.rdbuf());
-  std::string datasetPath = "./data/WeatherEvents_Jan2016-Dec2022.csv";
+  std::string datasetPath = "../data/WeatherEvents_Jan2016-Dec2022.csv";
   
   std::vector<WeatherRecord> dataset = WeatherParser::parseCSV(datasetPath);
   cout.rdbuf(prev);
