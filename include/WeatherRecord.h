@@ -23,7 +23,7 @@ struct WeatherRecord {
   std::string county;
   std::string state;
   std::string zipCode;
-  static int getSeverityRank(const std::string& sev) const {
+  static int getSeverityRank(const std::string& sev) {
     if (sev == "Light") return 1;
     if (sev == "Moderate") return 2;
     if (sev == "Severe") return 3;
