@@ -23,9 +23,12 @@ int partition(std::vector<T>& arr, int start, int end, Compare comp = Compare())
 }
 
 template <typename T, typename Compare = std::less<T>>
-void quickSort(std::vector<T>& arr, int start, int end, Compare comp = Compare()) {
+void quickSort(std::vector<T>& arr, int start = 0, int end = arr.size() - 1, Compare comp = Compare()) {
+
+    if (arr.empty()) return;
+    
     if (start < end) {
-        int p = partition(arr, start, end);
+        int p = partition(arr, start, end, comp);
 
         quickSort(arr, start, p-1, comp);
         quickSort(arr, p+1, end, comp);
