@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath, size_t maxRecords) {
+vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath, size_t maxRecords, const vector<string>& filterVec) {
   vector<WeatherRecord> records;
   ifstream file(filePath);
 
@@ -60,7 +60,12 @@ vector<WeatherRecord> WeatherParser::parseCSV(const string& filePath, size_t max
     std::getline(ss, record.state, ',');
     std::getline(ss, record.zipCode, ',');
 
-    records.push_back(record);
+    if (filterVec.empty() ||
+        ((record.state == filterVec[0] || filterVec[0] == "_")
+        && (record.type == filterVec[1] || filterVec[1] == "_")
+        && (record.severity == filterVec[2] || filterVec[2] == "_"))) {
+      records.push_back(record);
+    }
   }
   file.close();
   std::cout << "Successfully parsed " << records.size() << " records." << std::endl;
