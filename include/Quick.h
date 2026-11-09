@@ -22,23 +22,44 @@ int partition(std::vector<T>& arr, int start, int end, Compare comp = Compare())
     return p;
 }
 
-// Recursive quick sort
 template <typename T, typename Compare>
-void quickSort(std::vector<T>& arr, int start, int end, Compare comp) {
-    if (start < end) {
-        int p = partition(arr, start, end, comp);
+void quickSortHelper(std::vector<T>& arr, int start, int end, Compare comp) {
+    while (start < end) {
+        T pivot = arr[start + (end - start) / 2];
 
-        quickSort(arr, start, p - 1, comp);
-        quickSort(arr, p + 1, end, comp);
+        int low = start;
+        int mid = start;
+        int high = end;
+
+        while (mid <= high) {
+            if (comp(arr[mid], pivot)) {
+                std::swap(arr[low++], arr[mid++]);
+            }
+            else if (comp(pivot, arr[mid])) {
+                std::swap(arr[mid], arr[high--]);
+            }
+            else {
+                mid++;
+            }
+        }
+
+        // Recursively sort the smaller partition.
+        if (low - start < end - high) {
+            quickSortHelper(arr, start, low - 1, comp);
+            start = high + 1;
+        }
+        else {
+            quickSortHelper(arr, high + 1, end, comp);
+            end = low - 1;
+        }
     }
 }
 
-// Public function
 template <typename T, typename Compare = std::less<T>>
 void quickSort(std::vector<T>& arr, Compare comp = Compare()) {
     if (arr.empty()) return;
 
-    quickSort(arr, 0, static_cast<int>(arr.size()) - 1, comp);
+    quickSortHelper(arr, 0, static_cast<int>(arr.size()) - 1, comp);
 }
 
 #endif // QUICK_H
